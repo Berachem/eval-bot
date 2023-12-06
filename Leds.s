@@ -44,6 +44,7 @@ DUREE   			EQU     0x002FFFFF
 		EXPORT  LEDS_OFF
 		EXPORT 	LED4_ON
 		EXPORT  LED5_ON
+		EXPORT  LEDS_SWITCH
 			
 LEDS_INIT
 		;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^CONFIGURATION LED
@@ -86,6 +87,13 @@ LEDS_ON
 LEDS_OFF
 		ldr r9, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1
         mov r0, #0x00
+		STR r0, [r9]
+		BX LR
+		
+LEDS_SWITCH
+		ldr r9, = GPIO_PORTF_BASE + (BROCHE4_5<<2)
+		ldr r0, [r9]
+		EOR r0, r0, #0x30 ; BROCHE4_5
 		STR r0, [r9]
 		BX LR
 

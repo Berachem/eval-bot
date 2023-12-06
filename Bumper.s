@@ -1,6 +1,6 @@
 	AREA    |.text|, CODE, READONLY
 			ENTRY
-			EXPORT	__main
+			EXPORT	__mainB
 
 SYSCTL_PERIPH_GPIO  EQU		0x400FE108 ;SYSCTL_RCGC2_R 
 
@@ -25,7 +25,7 @@ BROCHE0_1           EQU     0x03        ; Broche 1 et 2
 	IMPORT LEDS_OFF
 	IMPORT LEDS_ON
 
-__main
+__mainB
 	
 		;branchement du port E
 		ldr r6, = SYSCTL_PERIPH_GPIO  			;; RCGC2

@@ -5,7 +5,7 @@
 
 		AREA    |.text|, CODE, READONLY
 		ENTRY
-		EXPORT	__mainM
+		EXPORT	__main
 		
 		;; The IMPORT command specifies that a symbol is defined in a shared object at runtime.
 		IMPORT	MOTEUR_INIT					; initialise les moteurs (configure les pwms + GPIO)
@@ -26,9 +26,11 @@
 		IMPORT LED5_ON
 		IMPORT LED4_ON
 		IMPORT LEDS_OFF
+		IMPORT LEDS_ON
+		IMPORT LEDS_SWITCH
 
 
-__mainM	
+__main	
 
 
 		;; BL Branchement vers un lien (sous programme)
@@ -46,6 +48,7 @@ loop
 		; Evalbot avance droit devant
 		BL	MOTEUR_DROIT_AVANT	   
 		BL	MOTEUR_GAUCHE_AVANT
+		;BL  LEDS_ON
 		
 		; Avancement pendant une période (deux WAIT)
 		BL	WAIT	; BL (Branchement vers le lien WAIT); possibilité de retour à la suite avec (BX LR)
@@ -61,9 +64,13 @@ loop
 
 		;; Boucle d'attante
 WAIT	ldr r1, =0xAFFFFF 
-wait1	subs r1, #1
-        bne wait1
-		
+wait1	
+		PUSH {LR}
+		BL LEDS_SWITCH
+		POP {LR}
+
+		subs r1, #1
+        bne wait1	
 		;; retour à la suite du lien de branchement
 		BX	LR
 
