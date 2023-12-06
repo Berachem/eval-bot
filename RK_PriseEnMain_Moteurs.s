@@ -21,6 +21,11 @@
 		IMPORT  MOTEUR_GAUCHE_AVANT			; moteur gauche tourne vers l'avant
 		IMPORT  MOTEUR_GAUCHE_ARRIERE		; moteur gauche tourne vers l'arrière
 		IMPORT  MOTEUR_GAUCHE_INVERSE		; inverse le sens de rotation du moteur gauche
+			
+		IMPORT LEDS_INIT
+		IMPORT LED5_ON
+		IMPORT LED4_ON
+		IMPORT LEDS_OFF
 
 
 __main	
@@ -29,7 +34,8 @@ __main
 		;; BL Branchement vers un lien (sous programme)
 
 		; Configure les PWM + GPIO
-		BL	MOTEUR_INIT	   		   
+		BL	MOTEUR_INIT	   
+		BL LEDS_INIT		
 		
 		; Activer les deux moteurs droit et gauche
 		BL	MOTEUR_DROIT_ON
@@ -47,7 +53,9 @@ loop
 		
 		; Rotation à droite de l'Evalbot pendant une demi-période (1 seul WAIT)
 		BL	MOTEUR_DROIT_ARRIERE   ; MOTEUR_DROIT_INVERSE
+		BL LED4_ON
 		BL	WAIT
+		BL LEDS_OFF
 
 		b	loop
 
