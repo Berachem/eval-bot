@@ -5,7 +5,7 @@
 
 		AREA    |.text|, CODE, READONLY
 		ENTRY
-		EXPORT	__main
+		EXPORT	__mainM
 		
 		;; The IMPORT command specifies that a symbol is defined in a shared object at runtime.
 		IMPORT	MOTEUR_INIT					; initialise les moteurs (configure les pwms + GPIO)
@@ -28,7 +28,7 @@
 		IMPORT LEDS_OFF
 
 
-__main	
+__mainM	
 
 
 		;; BL Branchement vers un lien (sous programme)

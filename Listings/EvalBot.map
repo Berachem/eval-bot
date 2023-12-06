@@ -4,9 +4,11 @@ Component: Arm Compiler for Embedded 6.19 Tool: armlink [5e73cb00]
 
 Section Cross References
 
+    rk_priseenmain_moteurs.o(.text) refers (Special) to leds.o(.text) for LED5_ON
     rk_priseenmain_moteurs.o(.text) refers (Special) to rk_config_moteur.o(.text) for MOTEUR_DROIT_INVERSE
+    bumper.o(.text) refers to leds.o(.text) for LEDS_INIT
     startup.o(RESET) refers to startup.o(STACK) for StackMem
-    startup.o(RESET) refers to rk_priseenmain_moteurs.o(.text) for __main
+    startup.o(RESET) refers to bumper.o(.text) for __main
 
 
 ==============================================================================
@@ -26,6 +28,8 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
+    Bumper.s                                 0x00000000   Number         0  bumper.o ABSOLUTE
+    Leds.s                                   0x00000000   Number         0  leds.o ABSOLUTE
     RK_Blinky_1LED.s                         0x00000000   Number         0  rk_blinky_1led.o ABSOLUTE
     RK_Blinky_2LED_1.2.s                     0x00000000   Number         0  rk_blinky_2led_1.2.o ABSOLUTE
     RK_Config_Moteur.s                       0x00000000   Number         0  rk_config_moteur.o ABSOLUTE
@@ -38,7 +42,9 @@ Image Symbol Table
     .text                                    0x00000278   Section       92  rk_blinky_1led.o(.text)
     .text                                    0x000002d4   Section      152  rk_blinky_2led_1.2.o(.text)
     .text                                    0x0000036c   Section      484  rk_config_moteur.o(.text)
-    .text                                    0x00000550   Section       52  rk_priseenmain_moteurs.o(.text)
+    .text                                    0x00000550   Section       64  rk_priseenmain_moteurs.o(.text)
+    .text                                    0x00000590   Section      108  bumper.o(.text)
+    .text                                    0x000005fc   Section      152  leds.o(.text)
     StackMem                                 0x20000000   Data           0  startup.o(STACK)
     STACK                                    0x20000000   Section      256  startup.o(STACK)
 
@@ -62,7 +68,13 @@ Image Symbol Table
     MOTEUR_GAUCHE_AVANT                      0x000004bf   Thumb Code     0  rk_config_moteur.o(.text)
     MOTEUR_DROIT_INVERSE                     0x000004c9   Thumb Code     0  rk_config_moteur.o(.text)
     MOTEUR_GAUCHE_INVERSE                    0x000004d5   Thumb Code     0  rk_config_moteur.o(.text)
-    __main                                   0x00000551   Thumb Code     0  rk_priseenmain_moteurs.o(.text)
+    __mainM                                  0x00000551   Thumb Code     0  rk_priseenmain_moteurs.o(.text)
+    __main                                   0x00000591   Thumb Code     0  bumper.o(.text)
+    LEDS_INIT                                0x000005fd   Thumb Code     0  leds.o(.text)
+    LEDS_ON                                  0x00000645   Thumb Code     0  leds.o(.text)
+    LEDS_OFF                                 0x00000653   Thumb Code     0  leds.o(.text)
+    LED4_ON                                  0x00000661   Thumb Code     0  leds.o(.text)
+    LED5_ON                                  0x0000066f   Thumb Code     0  leds.o(.text)
     __initial_sp                             0x20000100   Data           0  startup.o(STACK)
 
 
@@ -73,29 +85,31 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00000584, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000694, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000584, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000694, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x00000278   Code   RO           17  * RESET               startup.o
+    0x00000000   0x00000000   0x00000278   Code   RO           23  * RESET               startup.o
     0x00000278   0x00000278   0x0000005c   Code   RO            1  * .text               rk_blinky_1led.o
     0x000002d4   0x000002d4   0x00000098   Code   RO            6  * .text               rk_blinky_2led_1.2.o
     0x0000036c   0x0000036c   0x000001e4   Code   RO            9  * .text               rk_config_moteur.o
-    0x00000550   0x00000550   0x00000034   Code   RO           12  * .text               rk_priseenmain_moteurs.o
+    0x00000550   0x00000550   0x00000040   Code   RO           12  * .text               rk_priseenmain_moteurs.o
+    0x00000590   0x00000590   0x0000006c   Code   RO           15  * .text               bumper.o
+    0x000005fc   0x000005fc   0x00000098   Code   RO           18  * .text               leds.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000584, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000694, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000584, Size: 0x00000100, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000694, Size: 0x00000100, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000        -       0x00000100   Zero   RW           15    STACK               startup.o
+    0x20000000        -       0x00000100   Zero   RW           21    STACK               startup.o
 
 
 ==============================================================================
@@ -105,14 +119,16 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        92         24          0          0          0        300   rk_blinky_1led.o
-       152         40          0          0          0        292   rk_blinky_2led_1.2.o
-       484        112          0          0          0        392   rk_config_moteur.o
-        52          4          0          0          0        268   rk_priseenmain_moteurs.o
-       632        622          0          0        256        272   startup.o
+       108         20          0          0          0        260   bumper.o
+       152         20          0          0          0        264   leds.o
+        92         24          0          0          0        308   rk_blinky_1led.o
+       152         40          0          0          0        300   rk_blinky_2led_1.2.o
+       484        112          0          0          0        404   rk_config_moteur.o
+        64          4          0          0          0        280   rk_priseenmain_moteurs.o
+       632        622          0          0        256        280   startup.o
 
     ----------------------------------------------------------------------
-      1412        802          0          0        256       1524   Object Totals
+      1684        842          0          0        256       2096   Object Totals
          0          0          0          0          0          0   (incl. Generated)
          0          0          0          0          0          0   (incl. Padding)
 
@@ -127,15 +143,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1412        802          0          0        256       1524   Grand Totals
-      1412        802          0          0        256       1524   ELF Image Totals
-      1412        802          0          0          0          0   ROM Totals
+      1684        842          0          0        256       2096   Grand Totals
+      1684        842          0          0        256       2096   ELF Image Totals
+      1684        842          0          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 1412 (   1.38kB)
+    Total RO  Size (Code + RO Data)                 1684 (   1.64kB)
     Total RW  Size (RW Data + ZI Data)               256 (   0.25kB)
-    Total ROM Size (Code + RO Data + RW Data)       1412 (   1.38kB)
+    Total ROM Size (Code + RO Data + RW Data)       1684 (   1.64kB)
 
 ==============================================================================
 

@@ -404,6 +404,16 @@
               <FileType>2</FileType>
               <FilePath>.\RK_PriseEnMain_Moteurs.s</FilePath>
             </File>
+            <File>
+              <FileName>Bumper.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Bumper.s</FilePath>
+            </File>
+            <File>
+              <FileName>Leds.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Leds.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
