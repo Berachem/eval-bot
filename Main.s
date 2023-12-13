@@ -23,20 +23,26 @@
 			
 		IMPORT LEDS_INIT
 		IMPORT LEDS_SWITCH
+			
+		IMPORT SWITCH_INIT
+		IMPORT READ_SWITCH1
+		IMPORT READ_SWITCH2
 
 __main
 
 	BL BUMPERS_INIT
 	BL MOTEUR_INIT	 
 	BL LEDS_INIT
-	
+	BL SWITCH_INIT
+
+go
 	BL MOTEUR_DROIT_ON
 	BL MOTEUR_GAUCHE_ON
 	
 	BL MOTEUR_DROIT_AVANT	   
 	BL MOTEUR_GAUCHE_AVANT
 	
-loop
+loopgo
 	
 	BL LEDS_SWITCH
 	
@@ -44,17 +50,17 @@ loop
 	
 	BL READ_BUMPER1
 	cmp r5,#0x00
-	BEQ fin
+	BEQ stop
 		
 	BL READ_BUMPER2
 	cmp r5,#0x00
-	BEQ fin
+	BEQ stop
 	
 	;BL READ_BUMPERS
 	;cmp r5, #0
 	;BEQ fin
 	
-	B loop
+	B loopgo
 
 WAIT	ldr r1, =0xAFFFF 
 wait1	
@@ -64,9 +70,19 @@ wait1
 		BX	LR
 
 
-fin
+stop
 	BL MOTEUR_GAUCHE_OFF
 	BL MOTEUR_DROIT_OFF
+	
+loopstop	
+	BL READ_SWITCH1
+	CMP r5,#0x00
+	BEQ go
+	
+	B loopstop
+
+	
+	
 
 	NOP
 	NOP
