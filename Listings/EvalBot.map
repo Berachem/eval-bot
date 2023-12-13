@@ -8,8 +8,8 @@ Section Cross References
     rk_priseenmain_moteurs.o(.text) refers (Special) to moteur.o(.text) for MOTEUR_DROIT_INVERSE
     main.o(.text) refers (Special) to moteur.o(.text) for MOTEUR_DROIT_ARRIERE
     main.o(.text) refers (Special) to bumper.o(.text) for READ_BUMPERS
-    main.o(.text) refers (Special) to switch.o(.text) for READ_SWITCH2
     main.o(.text) refers to leds.o(.text) for LEDS_INIT
+    main.o(.text) refers to switch.o(.text) for SWITCH_INIT
     startup.o(RESET) refers to startup.o(STACK) for StackMem
     startup.o(RESET) refers to main.o(.text) for __main
 
@@ -50,8 +50,8 @@ Image Symbol Table
     .text                                    0x000003b8   Section      100  bumper.o(.text)
     .text                                    0x0000041c   Section      172  leds.o(.text)
     .text                                    0x000004c8   Section      108  switch.o(.text)
-    .text                                    0x00000534   Section       92  main.o(.text)
-    .text                                    0x00000590   Section      484  moteur.o(.text)
+    .text                                    0x00000534   Section      100  main.o(.text)
+    .text                                    0x00000598   Section      484  moteur.o(.text)
     StackMem                                 0x20000000   Data           0  startup.o(STACK)
     STACK                                    0x20000000   Section      256  startup.o(STACK)
 
@@ -79,17 +79,17 @@ Image Symbol Table
     READ_SWITCH1                             0x00000509   Thumb Code     0  switch.o(.text)
     READ_SWITCH2                             0x00000513   Thumb Code     0  switch.o(.text)
     __main                                   0x00000535   Thumb Code     0  main.o(.text)
-    MOTEUR_INIT                              0x00000591   Thumb Code     0  moteur.o(.text)
-    MOTEUR_DROIT_ON                          0x00000695   Thumb Code     0  moteur.o(.text)
-    MOTEUR_DROIT_OFF                         0x000006a1   Thumb Code     0  moteur.o(.text)
-    MOTEUR_GAUCHE_ON                         0x000006ad   Thumb Code     0  moteur.o(.text)
-    MOTEUR_GAUCHE_OFF                        0x000006b9   Thumb Code     0  moteur.o(.text)
-    MOTEUR_DROIT_ARRIERE                     0x000006c5   Thumb Code     0  moteur.o(.text)
-    MOTEUR_DROIT_AVANT                       0x000006cf   Thumb Code     0  moteur.o(.text)
-    MOTEUR_GAUCHE_ARRIERE                    0x000006d9   Thumb Code     0  moteur.o(.text)
-    MOTEUR_GAUCHE_AVANT                      0x000006e3   Thumb Code     0  moteur.o(.text)
-    MOTEUR_DROIT_INVERSE                     0x000006ed   Thumb Code     0  moteur.o(.text)
-    MOTEUR_GAUCHE_INVERSE                    0x000006f9   Thumb Code     0  moteur.o(.text)
+    MOTEUR_INIT                              0x00000599   Thumb Code     0  moteur.o(.text)
+    MOTEUR_DROIT_ON                          0x0000069d   Thumb Code     0  moteur.o(.text)
+    MOTEUR_DROIT_OFF                         0x000006a9   Thumb Code     0  moteur.o(.text)
+    MOTEUR_GAUCHE_ON                         0x000006b5   Thumb Code     0  moteur.o(.text)
+    MOTEUR_GAUCHE_OFF                        0x000006c1   Thumb Code     0  moteur.o(.text)
+    MOTEUR_DROIT_ARRIERE                     0x000006cd   Thumb Code     0  moteur.o(.text)
+    MOTEUR_DROIT_AVANT                       0x000006d7   Thumb Code     0  moteur.o(.text)
+    MOTEUR_GAUCHE_ARRIERE                    0x000006e1   Thumb Code     0  moteur.o(.text)
+    MOTEUR_GAUCHE_AVANT                      0x000006eb   Thumb Code     0  moteur.o(.text)
+    MOTEUR_DROIT_INVERSE                     0x000006f5   Thumb Code     0  moteur.o(.text)
+    MOTEUR_GAUCHE_INVERSE                    0x00000701   Thumb Code     0  moteur.o(.text)
     __initial_sp                             0x20000100   Data           0  startup.o(STACK)
 
 
@@ -100,9 +100,9 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00000774, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x0000077c, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000774, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000077c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -113,16 +113,16 @@ Memory Map of the image
     0x000003b8   0x000003b8   0x00000064   Code   RO           12    .text               bumper.o
     0x0000041c   0x0000041c   0x000000ac   Code   RO           15    .text               leds.o
     0x000004c8   0x000004c8   0x0000006c   Code   RO           18    .text               switch.o
-    0x00000534   0x00000534   0x0000005c   Code   RO           21  * .text               main.o
-    0x00000590   0x00000590   0x000001e4   Code   RO           24  * .text               moteur.o
+    0x00000534   0x00000534   0x00000064   Code   RO           21  * .text               main.o
+    0x00000598   0x00000598   0x000001e4   Code   RO           24  * .text               moteur.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000774, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0000077c, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000774, Size: 0x00000100, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x0000077c, Size: 0x00000100, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -138,7 +138,7 @@ Image component sizes
 
        100         26          0          0          0        256   bumper.o
        172         22          0          0          0        268   leds.o
-        92          4          0          0          0        256   main.o
+       100          4          0          0          0        260   main.o
        484        112          0          0          0        384   moteur.o
         92         24          0          0          0        308   rk_blinky_1led.o
        152         40          0          0          0        300   rk_blinky_2led_1.2.o
@@ -147,7 +147,7 @@ Image component sizes
        108         20          0          0          0        256   switch.o
 
     ----------------------------------------------------------------------
-      1908        876          0          0        256       2588   Object Totals
+      1916        876          0          0        256       2592   Object Totals
          0          0          0          0          0          0   (incl. Generated)
          0          0          0          0          0          0   (incl. Padding)
 
@@ -162,15 +162,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1908        876          0          0        256       2588   Grand Totals
-      1908        876          0          0        256       2588   ELF Image Totals
-      1908        876          0          0          0          0   ROM Totals
+      1916        876          0          0        256       2592   Grand Totals
+      1916        876          0          0        256       2592   ELF Image Totals
+      1916        876          0          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 1908 (   1.86kB)
+    Total RO  Size (Code + RO Data)                 1916 (   1.87kB)
     Total RW  Size (RW Data + ZI Data)               256 (   0.25kB)
-    Total ROM Size (Code + RO Data + RW Data)       1908 (   1.86kB)
+    Total ROM Size (Code + RO Data + RW Data)       1916 (   1.87kB)
 
 ==============================================================================
 

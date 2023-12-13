@@ -35,14 +35,14 @@ __main
 	BL LEDS_INIT
 	BL SWITCH_INIT
 
-go
+PLAY
 	BL MOTEUR_DROIT_ON
 	BL MOTEUR_GAUCHE_ON
 	
 	BL MOTEUR_DROIT_AVANT	   
 	BL MOTEUR_GAUCHE_AVANT
 	
-loopgo
+PLAY_LOOP
 	
 	BL LEDS_SWITCH
 	
@@ -50,36 +50,42 @@ loopgo
 	
 	BL READ_BUMPER1
 	cmp r5,#0x00
-	BEQ stop
+	BEQ PAUSE
 		
 	BL READ_BUMPER2
 	cmp r5,#0x00
-	BEQ stop
+	BEQ PAUSE
+	
+	BL READ_SWITCH1
+	cmp r5,#0x00
+	BEQ PAUSE
 	
 	;BL READ_BUMPERS
 	;cmp r5, #0
 	;BEQ fin
 	
-	B loopgo
+	B PLAY_LOOP
 
-WAIT	ldr r1, =0xAFFFF 
-wait1	
+WAIT	
+	
+	ldr r1, =0xAFFFF 
+WAIT_LOOP	
 		subs r1, #1
-        bne wait1	
+        bne WAIT_LOOP	
 		;; retour à la suite du lien de branchement
 		BX	LR
 
 
-stop
+PAUSE
 	BL MOTEUR_GAUCHE_OFF
 	BL MOTEUR_DROIT_OFF
 	
-loopstop	
-	BL READ_SWITCH1
+PAUSE_LOOP	
+	BL READ_SWITCH2
 	CMP r5,#0x00
-	BEQ go
+	BEQ PLAY
 	
-	B loopstop
+	B PAUSE_LOOP
 
 	
 	
