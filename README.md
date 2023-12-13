@@ -37,6 +37,7 @@ Enfin, le Maestro : __Main.s__
 - quand les deux bumpers sont touchés, demi-tour vers un côté...
 - varier la vitesse (+ ou -)
 - Utiliser les capteurs infrarouges des roues à la place d'un timer
+- Logigramme & Pseudo-code
 
 
 
