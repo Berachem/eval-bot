@@ -395,11 +395,6 @@
               <FilePath>.\RK_Blinky_2LED_1.2.s</FilePath>
             </File>
             <File>
-              <FileName>RK_Config_Moteur.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\RK_Config_Moteur.s</FilePath>
-            </File>
-            <File>
               <FileName>RK_PriseEnMain_Moteurs.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\RK_PriseEnMain_Moteurs.s</FilePath>
@@ -413,6 +408,21 @@
               <FileName>Leds.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\Leds.s</FilePath>
+            </File>
+            <File>
+              <FileName>Switch.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Switch.s</FilePath>
+            </File>
+            <File>
+              <FileName>Main.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Main.s</FilePath>
+            </File>
+            <File>
+              <FileName>Moteur.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Moteur.s</FilePath>
             </File>
           </Files>
         </Group>
