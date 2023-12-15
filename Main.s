@@ -34,12 +34,13 @@
 		IMPORT READ_SWITCH2
 
 __main
-
+;initialisations
 	BL BUMPERS_INIT
 	BL MOTEUR_INIT	 
 	BL LEDS_INIT
 	BL SWITCH_INIT
 
+;fonction principale, utilisé pour faire avancer le robot tout droit
 PLAY
 	BL MOTEUR_DROIT_ON
 	BL MOTEUR_GAUCHE_ON	
@@ -71,6 +72,7 @@ PLAY_LOOP
 	
 	B PLAY_LOOP
 
+;fonction d'attente avec un timer court, utilisé pour le clignotement des leds
 WAIT_LED	
 	
 	ldr r1, =0xAFFFF 
@@ -80,6 +82,7 @@ WAIT_LED_LOOP
 		;; retour à la suite du lien de branchement
 		BX	LR
 
+;fonction d'attente avec un timer long, utilisé pour la rotation
 WAIT_ROTATION
 	ldr r1, =0xAFFFFF
 WAIT_ROTATION_LOOP
@@ -88,7 +91,7 @@ WAIT_ROTATION_LOOP
 	;; retour à la suite du lien de branchement
 	BX	LR
 
-
+;fonction mettant le robot en pause
 PAUSE
 	BL MOTEUR_GAUCHE_OFF
 	BL MOTEUR_DROIT_OFF
@@ -101,6 +104,7 @@ PAUSE_LOOP
 	
 	B PAUSE_LOOP
 
+;fonction pour effectuer une rotation à droite
 ROTATION_DROITE
 	BL LEDS_OFF
 	BL LED4_ON
@@ -108,7 +112,8 @@ ROTATION_DROITE
 	BL WAIT_ROTATION
 	BL LEDS_OFF
 	B PLAY
-	
+
+;fonction pour effectuer une rotation à gauche
 ROTATION_GAUCHE
 	BL LEDS_OFF
 	BL LED5_ON
