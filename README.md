@@ -24,7 +24,7 @@ Enfin, le Maestro : __Main.s__
 - R6 : Moteur 🚗 <span style="color: yellow"> [COMPOSANT] </span>
 - R5 : Comparaison 🧐 
     - là où on STR toutes les résultats des méthodes de read
-- __R4 : LIBRE__
+- R4 : Compteur de collision restantes avant de Forcer
 - __R3 : LIBRE__
 - __R2 : LIBRE__
 - __R1 : LIBRE__
@@ -37,6 +37,8 @@ Enfin, le Maestro : __Main.s__
 - quand les deux bumpers sont touchés, demi-tour vers un côté...
 - varier la vitesse (+ ou -)
 - Utiliser les capteurs infrarouges des roues à la place d'un timer
+- Logigramme & Pseudo-code
+- Rapport et Présentation (groupe 2)
 
 
 
