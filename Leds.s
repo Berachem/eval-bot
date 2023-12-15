@@ -1,4 +1,4 @@
-	;; RK - Evalbot (Cortex M3 de Texas Instrument)
+		;; RK - Evalbot (Cortex M3 de Texas Instrument)
    		;; Fichier contenant l'initialisation des LEDs et leur fonctions d'intéraction avec le Main
 
 		AREA    |.text|, CODE, READONLY
@@ -8,9 +8,6 @@ SYSCTL_PERIPH_GPIO EQU		0x400FE108	; SYSCTL_RCGC2_R (p291 datasheet de lm3s9b92.
 
 ; The GPIODATA register is the data register
 GPIO_PORTF_BASE		EQU		0x40025000	; GPIO Port F (APB) base: 0x4002.5000 (p416 datasheet de lm3s9B92.pdf)
-
-; The GPIODATA register is the data register
-GPIO_PORTD_BASE		EQU		0x40007000		; GPIO Port D (APB) base: 0x4000.7000 (p416 datasheet de lm3s9B92.pdf)
 
 ; configure the corresponding pin to be an output
 ; all GPIO pins are inputs by default
@@ -42,7 +39,7 @@ BROCHE4_5			EQU		0x30		; led1 & led2 sur broche 4 et 5
 		
 			
 LEDS_INIT
-		;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^CONFIGURATION LED
+
 		; ;; Enable the Port F & D peripheral clock 		(p291 datasheet de lm3s9B96.pdf)
 		ldr r10, = SYSCTL_PERIPH_GPIO  			;; RCGC2
 		ldr	r5, [r10]
@@ -69,22 +66,25 @@ LEDS_INIT
         orr r5, r5, #BROCHE4_5			
         str r5, [r10]
 		
-		;vvvvvvvvvvvvvvvvvvvvvvvFin configuration LED 
+
 		
 		BX LR
-		
+
+;routine pour allumer les deux leds
 LEDS_ON
 		ldr r10, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1
         ldr r0, = BROCHE4_5		
 		STR r0, [r10]
 		BX LR
-		
+	
+;routine pour eteindre les deux leds	
 LEDS_OFF
 		ldr r10, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1
         mov r0, #0x00
 		STR r0, [r10]
 		BX LR
-		
+	
+;routine pour changer l'etat des deux leds	
 LEDS_SWITCH
 		ldr r10, = GPIO_PORTF_BASE + (BROCHE4_5<<2)
 		ldr r0, [r10]
@@ -92,12 +92,14 @@ LEDS_SWITCH
 		STR r0, [r10]
 		BX LR
 
+;routine pour allumer la led 4
 LED4_ON
 		ldr r10, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1
 		ldr r0, = BROCHE4
 		STR r0, [r10]
 		BX LR
 
+;routine pour allumer la led 5
 LED5_ON
 		ldr r10, = GPIO_PORTF_BASE + (BROCHE4_5<<2)  ;; @data Register = @base + (mask<<2) ==> LED1
 		ldr r0, = BROCHE5

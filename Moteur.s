@@ -59,9 +59,9 @@ PWM1GENA		EQU		PWM_BASE+0x0A0
 PWM1GENB		EQU		PWM_BASE+0x0A4
 
 
-VITESSE			EQU		0x1A2	; Valeures plus petites => Vitesse plus rapide exemple 0x192
-								; Valeures plus grandes => Vitesse moins rapide exemple 0x1B2
-						
+VITESSE_DEFAULT			EQU		0x192	; Valeures plus petites => Vitesse plus rapide exemple 0x192
+										; Valeures plus grandes => Vitesse moins rapide exemple 0x1B2
+VITESSE_FORCING			EQU     0x152 					
 						
 		AREA    |.text|, CODE, READONLY
 		ENTRY
@@ -78,6 +78,8 @@ VITESSE			EQU		0x1A2	; Valeures plus petites => Vitesse plus rapide exemple 0x19
 		EXPORT  MOTEUR_GAUCHE_AVANT
 		EXPORT  MOTEUR_GAUCHE_ARRIERE
 		EXPORT  MOTEUR_GAUCHE_INVERSE
+		EXPORT  SET_VITESSE_DEFAULT
+		EXPORT  SET_VITESSE_FORCING
 
 
 MOTEUR_INIT	
@@ -158,7 +160,7 @@ MOTEUR_INIT
 		str	r0,[r6]
 		
 		ldr	r6, =PWM0CMPA ;Valeur rapport cyclique : pour 10% => 1C2h si clock = 0F42400
-		mov	r0, #VITESSE
+		mov	r0, #VITESSE_DEFAULT
 		str	r0, [r6]  
 		
 		ldr	r6, =PWM0CMPB ;PWM0CMPB recoit meme valeur. (rapport cyclique depend de CMPA)
@@ -197,7 +199,7 @@ MOTEUR_INIT
 		str	r0,[r6]
 		
 		ldr	r6, =PWM1CMPA ;Valeur rapport cyclique : pour 10% => 1C2h si clock = 0F42400
-		mov	r0,	#VITESSE
+		mov	r0,	#VITESSE_DEFAULT
 		str	r0, [r6]  ;*(int *)(0x40028000+0x058)=0x01C2;
 		
 		ldr	r6, =PWM1CMPB ;PWM0CMPB recoit meme valeur. (CMPA depend du rapport cyclique)
@@ -326,5 +328,30 @@ MOTEUR_GAUCHE_INVERSE
 		EOR	r0, r1, #GPIO_1
 		str	r0,[r6]
 		BX	LR
+
+SET_VITESSE_DEFAULT
+	ldr    r6, =PWM0CMPA
+	mov    r0, #VITESSE_DEFAULT
+	str    r0, [r6]
+
+	ldr    r6, =PWM1CMPA
+	mov    r0, #VITESSE_DEFAULT
+	str    r0, [r6]
+
+	BX LR
+	
+SET_VITESSE_FORCING
+		ldr    r6, =PWM0CMPA
+	mov    r0, #VITESSE_FORCING
+	str    r0, [r6]
+
+	ldr    r6, =PWM1CMPA
+	mov    r0, #VITESSE_FORCING
+	str    r0, [r6]
+
+	BX LR
+
+
+	BX LR
 
 		END

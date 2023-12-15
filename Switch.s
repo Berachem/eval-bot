@@ -26,52 +26,55 @@ BROCHE6_7			EQU		0xc0		; bouton 1 & bouton 2
 		EXPORT READ_SWITCH1
 		EXPORT READ_SWITCH2
 
-
+;routine d'initialisation des switchs
 SWITCH_INIT
 		
-		; ;; Enable the Port D peripheral clock
-		ldr r12, = SYSCTL_PERIPH_GPIO  			;; RCGC2
-		ldr r0, [r12]
-        ORR r0, r0, #0x00000008
-        str r0, [r12]
-		
-		; ;; "There must be a delay of 3 system clocks before any GPIO reg. access  (p413 datasheet de lm3s9B92.pdf)
-		nop
-		nop	   
-		nop
+	; ;; Enable the Port D peripheral clock
+	ldr r12, = SYSCTL_PERIPH_GPIO  			;; RCGC2
+	ldr r0, [r12]
+	ORR r0, r0, #0x00000008
+	str r0, [r12]
+	
+	; ;; "There must be a delay of 3 system clocks before any GPIO reg. access  (p413 datasheet de lm3s9B92.pdf)
+	nop
+	nop	   
+	nop
 
-		ldr r11, = GPIO_PORTD_BASE+GPIO_I_PUR	;; Pull up
-		ldr r0, [r11]
-        orr r0, r0, #BROCHE6_7		
-        str r0, [r11]
-		
-		ldr r11, = GPIO_PORTD_BASE+GPIO_O_DEN	;; Enable Digital Function 
-		ldr r0, [r11]
-        orr r0, r0, #BROCHE6_7		
-        str r0, [r11]
-		
-		ldr r11, = GPIO_PORTD_BASE + (BROCHE6<<2)  ;; @data Register = @base + (mask<<2) ==> Switch
-		ldr r12, = GPIO_PORTD_BASE + (BROCHE7<<2)  ;; @data Register = @base + (mask<<2) ==> Switch
-		
-		BX LR
-		
+	ldr r11, = GPIO_PORTD_BASE+GPIO_I_PUR	;; Pull up
+	ldr r0, [r11]
+	orr r0, r0, #BROCHE6_7		
+	str r0, [r11]
+	
+	ldr r11, = GPIO_PORTD_BASE+GPIO_O_DEN	;; Enable Digital Function 
+	ldr r0, [r11]
+	orr r0, r0, #BROCHE6_7		
+	str r0, [r11]
+	
+	ldr r11, = GPIO_PORTD_BASE + (BROCHE6<<2)  ;; @data Register = @base + (mask<<2) ==> Switch
+	ldr r12, = GPIO_PORTD_BASE + (BROCHE7<<2)  ;; @data Register = @base + (mask<<2) ==> Switch
+	
+	BX LR
+
+;routine de lecture de l'etat du switch 1
 READ_SWITCH1
-		;Lecture du contenu de la valeur d'activation du Switch 1
+	;Lecture du contenu de la valeur d'activation du Switch 1
 
-		ldr r11, = GPIO_PORTD_BASE + (BROCHE6<<2)  ;; @data Register = @base + (mask<<2) ==> Switch
-		LDR r5, [r11]
-		
-		BX LR
-		
+	ldr r11, = GPIO_PORTD_BASE + (BROCHE6<<2)  ;; @data Register = @base + (mask<<2) ==> Switch
+	LDR r5, [r11]
+	cmp r5,#0x00
+	BX LR
+
+;routine de lecture de l'etat du switch 2
 READ_SWITCH2
-		;Lecture du contenu de la valeur d'activation du Switch 2
+	;Lecture du contenu de la valeur d'activation du Switch 2
 
-		ldr r12, = GPIO_PORTD_BASE + (BROCHE7<<2)  ;; @data Register = @base + (mask<<2) ==> Switch
-		LDR r5, [r12]
+	ldr r12, = GPIO_PORTD_BASE + (BROCHE7<<2)  ;; @data Register = @base + (mask<<2) ==> Switch
+	LDR r5, [r12]
+	cmp r5,#0x00
+	BX LR
 		
-		BX LR
-		
-		
-		NOP
-		NOP
-		END
+
+;fin du programme
+	NOP
+	NOP
+	END

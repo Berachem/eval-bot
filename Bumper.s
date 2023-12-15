@@ -1,8 +1,10 @@
 	AREA    |.text|, CODE, READONLY
 
-SYSCTL_PERIPH_GPIO  EQU		0x400FE108 ;SYSCTL_RCGC2_R 
+; This register controls the clock gating logic in normal Run mode
+SYSCTL_PERIPH_GPIO  EQU		0x400FE108 ; SYSCTL_RCGC2_R (p291 datasheet de lm3s9b92.pdf)
 
-GPIO_PORTE_BASE		EQU		0x40024000 ;GPIO Port E		
+; The GPIODATA register is the data register
+GPIO_PORTE_BASE		EQU		0x40024000 ; GPIO Port E (ABP) base : 0x4002.4000 (p291 datasheet de lm3s9b92.pdf)
 	
 ; Digital enable register
 ; To use the pin as a digital input or output, the corresponding GPIODEN bit must be set.
@@ -20,7 +22,8 @@ BROCHE0_1           EQU     0x03        ; Broche 1 et 2
 	EXPORT READ_BUMPER1
 	EXPORT READ_BUMPER2
 	EXPORT READ_BUMPERS
-	
+
+;routine d'initialisation des bumpers
 BUMPERS_INIT
 	;branchement du port E
 	ldr r6, = SYSCTL_PERIPH_GPIO  			;; RCGC2
@@ -46,27 +49,34 @@ BUMPERS_INIT
 	
 	BX LR
 
+;routine de lecture de bumper 1
 READ_BUMPER1
 	;lecture de l'etat du bumper1
 	
 	ldr r9, = GPIO_PORTE_BASE + (BROCHE0<<2)
 	ldr r5, [r9]
+	cmp r5,#0x00
 	BX LR
 
+;routine de lecture de bumper 2
 READ_BUMPER2
 	;lecture de l'etat du bumper2
 	
 	ldr r8, = GPIO_PORTE_BASE + (BROCHE1<<2)
 	ldr r5, [r8]
+	cmp r5,#0x00
 	BX LR
-	
+
+;routine de lecture des bumpers
 READ_BUMPERS
 	;lecture des deux ports en meme temps
 
 	ldr r8, = GPIO_PORTE_BASE + (BROCHE0_1<<2)
 	ldr r5, [r8]
+	cmp r5,#0x00
 	BX LR
-	
+
+;fin du programme
 	NOP
 	NOP
 	END
