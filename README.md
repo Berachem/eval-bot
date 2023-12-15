@@ -34,9 +34,6 @@ Enfin, le Maestro : __Main.s__
 > Même si cela n'est pas obligatoire, nous avons attitré des registres afin de clarifier au mieux notre code et sa structuration. ✅
 
 # TODO 🎈
-- quand les deux bumpers sont touchés, demi-tour vers un côté...
-- varier la vitesse (+ ou -)
-- Utiliser les capteurs infrarouges des roues à la place d'un timer
 - Logigramme & Pseudo-code
 - Rapport et Présentation (groupe 2)
 
