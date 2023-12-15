@@ -38,6 +38,7 @@ Enfin, le Maestro : __Main.s__
 - varier la vitesse (+ ou -)
 - Utiliser les capteurs infrarouges des roues à la place d'un timer
 - Logigramme & Pseudo-code
+- Rapport et Présentation (groupe 2)
 
 
 
