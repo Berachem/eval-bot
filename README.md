@@ -1,7 +1,8 @@
 # 🤖 Eval-Bot 
 ## Robot en assembleur Cortex M3
 
-![image](https://github.com/Berachem/eval-bot/assets/61350744/61177575-62eb-4426-996d-c1c2628b6114)
+![image](https://github.com/Berachem/eval-bot/assets/61350744/c3f507bb-f960-4ace-9e5d-8f322fcee9cd)
+
 
 ## 📦 Structure du code
 - __Bumper.s__
@@ -33,10 +34,14 @@ Enfin, le Maestro : __Main.s__
 
 > Même si cela n'est pas obligatoire, nous avons attitré des registres afin de clarifier au mieux notre code et sa structuration. ✅
 
+# Logigramme
+
+![_Logigramme GIG-Bot](https://github.com/Berachem/eval-bot/assets/61350744/42fb13c4-5dab-47af-a2d3-a5b9db2beebb)
+
+
+
+
 # TODO 🎈
-- quand les deux bumpers sont touchés, demi-tour vers un côté...
-- varier la vitesse (+ ou -)
-- Utiliser les capteurs infrarouges des roues à la place d'un timer
 - Logigramme & Pseudo-code
 - Rapport et Présentation (groupe 2)
 
