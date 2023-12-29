@@ -157,6 +157,14 @@ Le GIG-Bot représente une avancée significative pour l'EVALBOT, offrant une ba
 __Nous sommes heureux du rendu final du projet. Il nous a réellement aidé à mettre un
 pied concret dans le monde de l’assembleur et ce de façon ludique ! 🙂__
 
+<center>
+    <video controls>
+        <source src="https://igadvisory.fr/opendata/Demo_GIG-Bot.mp4" type="video/mp4">
+    </video>
+</center>
+
+
+
 ## Auteurs 👨‍💻👨‍💻
 
 - <a href="https://berachem.dev">Berachem 'Berachem'  MARKRIA </a>
