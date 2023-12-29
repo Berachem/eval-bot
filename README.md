@@ -1,5 +1,8 @@
 # GIG-Bot 🤖
-![image](https://github.com/Berachem/eval-bot/assets/61350744/c3f507bb-f960-4ace-9e5d-8f322fcee9cd)
+
+<center>
+    <img width="498" alt="image" src="./assets/promotion.png">
+</center>
 
 Bienvenue dans le projet GIG-Bot, un robot éclaireur innovant pour les interventions délicates du GIGN. 
 
@@ -25,7 +28,9 @@ Chaque fichier contient des routines et des configurations spécifiques au compo
 ## Représentations Visuelles 📊
 
 ### Logigramme
-![_Logigramme GIG-Bot](https://github.com/Berachem/eval-bot/assets/61350744/42fb13c4-5dab-47af-a2d3-a5b9db2beebb)
+<center>
+    <img width="498" alt="image" src="./assets/logigramme.png">
+</center>
 
 ### Pseudo-code
 ```
@@ -117,11 +122,15 @@ gestion et la maintenance du code.
 LR. Parfois, l’adresse précédente était écrasée, nous avons donc choisi d’utiliser les instructions
 PUSH & POP qui utilisent la pile d'instructions comme stockage .
 > 
-<img width="244" alt="image" src="https://github.com/Berachem/eval-bot/assets/61350744/56981e66-3b38-4eda-8961-bcb25064a613">
+<center>
+    <img width="200" alt="image" src="./assets/stack_lr.png">
+</center>
 
 ## Évolutions Envisagées 🚀
 
-<img width="498" alt="image" src="https://github.com/Berachem/eval-bot/assets/61350744/075b4576-a98f-445a-816e-84742a6a767e">
+<center>
+    <img width="498" alt="image" src="./assets/infrarouge.png">
+</center>
 
 ### Utilisation des émetteurs et capteurs infrarouge
 > nous avons envisagé de gérer la distance et le temps écoulés grâce
@@ -150,7 +159,7 @@ pied concret dans le monde de l’assembleur et ce de façon ludique ! 🙂__
 
 ## Auteurs 👨‍💻👨‍💻
 
-- Berachem 'Berachem'  MARKRIA
+- <a href="https://berachem.dev">Berachem 'Berachem'  MARKRIA </a>
 - Joshua 'Kilouhardi' LEMOINE 
 
 Nous sommes fiers du rendu final du projet, une immersion ludique dans le monde de l'assembleur ! 🙂
