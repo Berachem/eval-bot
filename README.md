@@ -169,8 +169,8 @@ https://github.com/Berachem/eval-bot/assets/61350744/5059b10e-bf67-47bb-809d-f3c
 
 ## Auteurs 👨‍💻👨‍💻
 
-- <a href="https://berachem.dev">Berachem 'Berachem'  MARKRIA </a>
-- Joshua 'Kilouhardi' LEMOINE 
+- <a href="https://berachem.dev">Berachem MARKRIA </a>
+- <a href="https://github.com/LemoineJoshua">Joshua LEMOINE </a>
 
 Nous sommes fiers du rendu final du projet, une immersion ludique dans le monde de l'assembleur ! 🙂
 
