@@ -163,6 +163,8 @@ pied concret dans le monde de l’assembleur et ce de façon ludique ! 🙂__
     </video>
 </center>
 
+https://github.com/Berachem/eval-bot/assets/61350744/5059b10e-bf67-47bb-809d-f3c00a9f5d65
+
 
 
 ## Auteurs 👨‍💻👨‍💻
