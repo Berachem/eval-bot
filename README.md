@@ -29,7 +29,7 @@ Chaque fichier contient des routines et des configurations spécifiques au compo
 
 ### Logigramme
 <center>
-    <img width="700" alt="image" src="./assets/logigramme.png">
+    <img width="1400" alt="image" src="./assets/logigramme.png">
 </center>
 
 ### Pseudo-code
