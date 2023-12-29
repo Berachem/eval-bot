@@ -158,7 +158,7 @@ __Nous sommes heureux du rendu final du projet. Il nous a réellement aidé à m
 pied concret dans le monde de l’assembleur et ce de façon ludique ! 🙂__
 
 <center>
-    <video controls>
+    <video width="740" height="480" controls>
         <source src="https://igadvisory.fr/opendata/Demo_GIG-Bot.mp4" type="video/mp4">
     </video>
 </center>
