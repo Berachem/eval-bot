@@ -1,8 +1,12 @@
 # GIG-Bot 🤖
 
 <center>
-    <img width="498" alt="image" src="./assets/promotion.png">
+    <video width="740" height="480" controls>
+        <source src="https://igadvisory.fr/opendata/Demo_GIG-Bot.mp4" type="video/mp4">
+    </video>
 </center>
+
+https://github.com/Berachem/eval-bot/assets/61350744/5059b10e-bf67-47bb-809d-f3c00a9f5d65
 
 Bienvenue dans le projet GIG-Bot, un robot éclaireur innovant pour les interventions délicates du GIGN. 
 
@@ -157,15 +161,6 @@ Le GIG-Bot représente une avancée significative pour l'EVALBOT, offrant une ba
 __Nous sommes heureux du rendu final du projet. Il nous a réellement aidé à mettre un
 pied concret dans le monde de l’assembleur et ce de façon ludique ! 🙂__
 
-<center>
-    <video width="740" height="480" controls>
-        <source src="https://igadvisory.fr/opendata/Demo_GIG-Bot.mp4" type="video/mp4">
-    </video>
-</center>
-
-https://github.com/Berachem/eval-bot/assets/61350744/5059b10e-bf67-47bb-809d-f3c00a9f5d65
-
-
 
 ## Auteurs 👨‍💻👨‍💻
 
@@ -173,6 +168,10 @@ https://github.com/Berachem/eval-bot/assets/61350744/5059b10e-bf67-47bb-809d-f3c
 - <a href="https://github.com/LemoineJoshua">Joshua LEMOINE </a>
 
 Nous sommes fiers du rendu final du projet, une immersion ludique dans le monde de l'assembleur ! 🙂
+
+<center>
+    <img width="498" alt="image" src="./assets/promotion.png">
+</center>
 
 
 
